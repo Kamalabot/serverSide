@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Serving from Server</title>
+    <link rel="stylesheet" href="tachyons.min.css">
+    <script src="./p5.js"></script>
+</head>
+
+<body class="helvetica pa1 bg-lightest-green">
+  <div class="flex items-center justify-center pa4">
+    <a href="https://kamalabot.github.io/P5Learning/Text/textIndex.html" class="f4 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box mr4">
+      <span class="pl1">Texting With JS</span>
+    </a>  
+    <a href="https://kamalabot.github.io/P5Learning/p5/p5Index.html" class="f4 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box mr4">
+      <span class="pl1">Playfully P5</span>
+    </a>
+    <a href="https://kamalabot.github.io/P5Learning/ML/mlIndex.html" class="f4 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box mr4">
+      <span class="pl1">Learning Machine</span>
+    </a>
+  </div>
+  <div class="fl w-100 f4 tl">
+    <div class="w-50 fl pa2">
+      <h2>Price Entry</h2>
+      <p class="f4 lh-copy">Enter the item and price below.</p>
+      <span>Item Name: </span><input type="item" id="item"/>
+      <span>Price: </span><input type="price" id="price"/>
+      <button id="setPrice" class="pa2 ma2">Price Submit</button>
+      <p id="outCom" class="f4 lh-copy"></p>
+    </div>
+    <div class="w-50 fl pa2">
+        <h2>Retrive Price</h2>
+        <p class="f4 lh-copy">Enter the item to Find.</p>
+        <span>Item Name: </span><input type="item" id="itemRet"/>
+        <button id="getPrice">Get Price</button>
+        <p id="outPrice" class="f4 lh-copy"></p>
+    </div>
+    <script>
+       //you have to use the client side libraries where fetch wont work...
+       var itemIn, itemRet, setPriceB, priceIn, getPriceB,pricePrint,outComment;
+       function setup(){
+           loadJSON('/allPrice',gotData)
+           outComment = select('#outCom')
+
+           setPriceB = select('#setPrice')
+           
+           getPriceB = select('#getPrice')
+           pricePrint = select('#outPrice')
+
+           setPriceB.mouseClicked(setPriceData)
+           getPriceB.mouseClicked(getPriceData)
+    } 
+       function gotData(data){
+        console.log(data)
+       }
+       function setPriceData(){
+        itemIn = select('#item').value()
+        priceIn = select('#price').value()
+        print('enter set')   
+        if(itemIn !='' && priceIn !=''){
+            loadJSON(`/add/${itemIn}/${priceIn}`)
+            outComment.html('price is registered...')
+        }else{
+            outComment.html('Please enter both item and price')
+        } 
+    }
+
+       function getPriceData(){
+        print('enter get')
+        itemRet = select('#itemRet').value()   
+        if(itemRet){
+            loadJSON('/allPrice', (data)=>{
+            var price = data[itemRet]
+            pricePrint.html(`The price of ${itemRet} is ${price}`)
+            })
+        }else{
+            pricePrint.html(`Enter a Valid Item, or price unavailable`)
+        }
+    }
+    </script>
+</body>
+</html>

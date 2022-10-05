@@ -19,110 +19,113 @@
     </a>
   </div>
   <div class="fl w-100 f1 tc f-healines-ns dim black link">
-        <a href="https://www.javascript.com/" class="no-underline"><h1>Server side rendering</h1></a>
-        <aside class="f4 tr">With love from Server</aside>
-    </div>
-    <section class="mw7 center">
-      <h2 class="baskerville fw1 ph3 ph0-l"><strong>Serving Pages from Server</strong></h2>
-      <article class="bt bb b--black-10">
-          <div class="flex flex-column flex-row-ns">
-            <div class="w-100 pl3-ns">
-              <h3>Webpages are in the Interwebs</h3>
-              <p class="f6 f5-l lh-copy">
-                This page has been served from a <strong>remote server</strong>. The <strong>user i.e you</strong> care, feel and 
-                want to experience is a smooth operation of the web page. This is page has a purpose. It is to act as a memory hook,
-                a reminder about conceptual difference between server-side and user-side javascript. 
-              </p>
-              <h3>What is one Major Difference</h3>
-              <p class="f6 f5-l lh-copy">The webpage that is shown to the user need not contain any JavaScript. Webpage that we 
-                build on a file like index.html is <strong>not required.</strong>. The entire page is built on the server and 
-                it is transported to the web browser of the user. 
-              </p>
-              <button id="geoLocate">GeoLocate me!</button>
+      <a href="https://www.javascript.com/" class="no-underline"><h1>Server side rendering</h1></a>
+      <aside class="f4 tr">With love from Server</aside>
+  </div>
+  <section class="mw7 center">
+    <h2 class="baskerville fw1 ph3 ph0-l"><strong>Serving Pages from Server</strong></h2>
+    <a href="/exercise.html" class="f4 no-underline orange bg-animate hover-bg-near-blue hover-black inline-flex pa3 ba border-box ml7 tr">
+      <span class="pl1">Server Side Exercises</span>
+    </a>
+    <article class="bt bb b--black-10">
+        <div class="flex flex-column flex-row-ns">
+          <div class="w-100 pl3-ns">
+            <h3>Webpages are in the Interwebs</h3>
+            <p class="f6 f5-l lh-copy">
+              This page has been served from a <strong>remote server</strong>. The <strong>user i.e you</strong> care, feel and 
+              want to experience is a smooth operation of the web page. This is page has a purpose. It is to act as a memory hook,
+              a reminder about conceptual difference between server-side and user-side javascript. 
+            </p>
+            <h3>What is one Major Difference</h3>
+            <p class="f6 f5-l lh-copy">The webpage that is shown to the user need not contain any JavaScript. Webpage that we 
+              build on a file like index.html is <strong>not required.</strong>. The entire page is built on the server and 
+              it is transported to the web browser of the user. 
+            </p>
+            <button id="geoLocate">GeoLocate me!</button>
+            
+            <h3>Your location shown</h3>
+            <p class="f6 f5-l lh-copy" id="youLoc"></p>
+            <script>
+              var geo = document.getElementById('geoLocate')
+              var x = document.getElementById('youLoc')
+              function getLocation() {
+                console.log('enter')
+                if (navigator.geolocation) {
+                  navigator.geolocation.watchPosition(showPosition);
+                } else {
+                  x.innerHTML = "Geolocation is not supported by this browser.";
+                }
+              }
               
-              <h3>Your location shown</h3>
-              <p class="f6 f5-l lh-copy" id="youLoc"></p>
-              <script>
-                var geo = document.getElementById('geoLocate')
-                var x = document.getElementById('youLoc')
-                function getLocation() {
-                  console.log('enter')
-                  if (navigator.geolocation) {
-                    navigator.geolocation.watchPosition(showPosition);
-                  } else {
-                    x.innerHTML = "Geolocation is not supported by this browser.";
-                  }
-                }
-                
-                function showPosition(position) {
-                  console.log(position)
-                  x.innerHTML = "Latitude: " + position.coords.latitude +
-                  "<br>Longitude: " + position.coords.longitude;
-                }
-                
-                geo.addEventListener('click',getLocation)
-              </script>
-              <h3>How about this page?</h3>
-              <p class="f6 f5-l lh-copy">It is a static page with inbuilt script sent to the browser. Browser is seeing it, as <strong>whole page</strong>. The <strong>Geolocate</strong> button above shows the location after getting your permission.</p>
-              <h3>What difference does it make?</h3>
-              <p class="f6 f5-l lh-copy">To the regular consumer of websites, it opens up aesthetically pleasing pages, with functions 
-                that is supported from the server. Especially the security is enhanced, as the user credentials are stored in the 
-                server. Multiple front-end frameworks are created for the developers to build websites fast. For example, provide any of the 
-                english "Parts of Speech" in the below text box. This <strong>queries the server</strong> that the page is hosted and provides the data. 
-              </p>
-              <input type="pos" id="pos"/>
-              <button id="getCol">Part of Speech</button>
-              <p class="f6 f5-l lh-copy" id="color"><span>The color associated is: </span></p>
-              <script>
-                var enter = document.getElementById('getCol');
-                var output = document.getElementById('color');
+              function showPosition(position) {
+                console.log(position)
+                x.innerHTML = "Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude;
+              }
+              
+              geo.addEventListener('click',getLocation)
+            </script>
+            <h3>How about this page?</h3>
+            <p class="f6 f5-l lh-copy">It is a static page with inbuilt script sent to the browser. Browser is seeing it, as <strong>whole page</strong>. The <strong>Geolocate</strong> button above shows the location after getting your permission.</p>
+            <h3>What difference does it make?</h3>
+            <p class="f6 f5-l lh-copy">To the regular consumer of websites, it opens up aesthetically pleasing pages, with functions 
+              that is supported from the server. Especially the security is enhanced, as the user credentials are stored in the 
+              server. Multiple front-end frameworks are created for the developers to build websites fast. For example, provide any of the 
+              english "Parts of Speech" in the below text box. This <strong>queries the server</strong> that the page is hosted and provides the data. 
+            </p>
+            <input type="pos" id="pos"/>
+            <button id="getCol">Part of Speech</button>
+            <p class="f6 f5-l lh-copy" id="color"><span>The color associated is: </span></p>
+            <script>
+              var enter = document.getElementById('getCol');
+              var output = document.getElementById('color');
 
-                enter.addEventListener('click', getColorData)
+              enter.addEventListener('click', getColorData)
 
-                function getColorData(){
-                  var text = document.getElementById('pos').value;
-                  let capText = text.charAt(0).toUpperCase() + text.slice(1)
-                  if(text == ''){
-                    output.innerHTML = '';
-                    output.innerHTML += "<span class='bg-red'>Provide a Parts of speech like Noun or Verb...</span>"
-                  } else {
-                    const root = "/all"; 
-                    console.log(root)
-                    output.textContent = ''
-                    fetch(root)
-                      .then(data=>data.json())
-                      .then(color=>{
-                        //console.log(color)
-                        for(let col of color){
-                          if(col.description == capText){
-                          output.innerHTML += `<span class='bg-${col.color}'>The ${col.description} has tag ${col.tag}</span><br>`;
-                        }
+              function getColorData(){
+                var text = document.getElementById('pos').value;
+                let capText = text.charAt(0).toUpperCase() + text.slice(1)
+                if(text == ''){
+                  output.innerHTML = '';
+                  output.innerHTML += "<span class='bg-red'>Provide a Parts of speech like Noun or Verb...</span>"
+                } else {
+                  const root = "/all"; 
+                  console.log(root)
+                  output.textContent = ''
+                  fetch(root)
+                    .then(data=>data.json())
+                    .then(color=>{
+                      //console.log(color)
+                      for(let col of color){
+                        if(col.description == capText){
+                        output.innerHTML += `<span class='bg-${col.color}'>The ${col.description} has tag ${col.tag}</span><br>`;
                       }
-                    })
-                  }
+                    }
+                  })
                 }
-              </script>
-              <h3>Hey, I am unable to scrape this Page!!!</h3>
-              <p class="f6 f5-l lh-copy">Scraping is the activity of selectively pulling the information of the 
-                webpage, and storing it for later use. <strong>Scraper is not a browser</strong>. Page only comes in if a browser 
-                requests for it. The page is rendered like a movie on the theatre screen. If there is no screen, then how to see and then 
-                scrape it?   
-              </p>
-              <h3>How to send input to Server?</h3>
-              <strong>On Page Input</strong> The page can be rendered with elements from which the user input can be requested, and then processed on the server-side. 
-              The output can be sent back to the page. <strong>On URL input</strong> The url that is entered into the address bar is modified to include the 
-              input from the user. Many API's work using the url modification process. Querying these APIs can be done through requests libraries in Python on Javascript. 
-              <h3>Why learn server side programming?</h3>
-              <strong>Knowledge about sending</strong> the pages piece-wise to the browser opens up new technologies and frameworks which were not 
-                available when the page had to be sent as a full file. The libraries like Express, Svelte, React and Angular are the mutation of 
-                the server-side scripting. It is a mandatory launchpad to lift off into the Front-End world.
-              <h3>How the Page style works?</h3>
-              <p class="f6 f5-l lh-copy">That is, the server sends the stylesheet to the user. This page is styled with <a href="http://tachyons.io/#style">Tachyons CSS</a>. If you check the source of the page,
-              the style sheet itself has come along from the server.</p>
-                 
-            </div>
+              }
+            </script>
+            <h3>Hey, I am unable to scrape this Page!!!</h3>
+            <p class="f6 f5-l lh-copy">Scraping is the activity of selectively pulling the information of the 
+              webpage, and storing it for later use. <strong>Scraper is not a browser</strong>. Page only comes in if a browser 
+              requests for it. The page is rendered like a movie on the theatre screen. If there is no screen, then how to see and then 
+              scrape it?   
+            </p>
+            <h3>How to send input to Server?</h3>
+            <strong>On Page Input</strong> The page can be rendered with elements from which the user input can be requested, and then processed on the server-side. 
+            The output can be sent back to the page. <strong>On URL input</strong> The url that is entered into the address bar is modified to include the 
+            input from the user. Many API's work using the url modification process. Querying these APIs can be done through requests libraries in Python on Javascript. 
+            <h3>Why learn server side programming?</h3>
+            <strong>Knowledge about sending</strong> the pages piece-wise to the browser opens up new technologies and frameworks which were not 
+              available when the page had to be sent as a full file. The libraries like Express, Svelte, React and Angular are the mutation of 
+              the server-side scripting. It is a mandatory launchpad to lift off into the Front-End world.
+            <h3>How the Page style works?</h3>
+            <p class="f6 f5-l lh-copy">That is, the server sends the stylesheet to the user. This page is styled with <a href="http://tachyons.io/#style">Tachyons CSS</a>. If you check the source of the page,
+            the style sheet itself has come along from the server.</p>
+                
           </div>
-      </article>
-    </section>
+        </div>
+    </article>
+  </section>
 </body>
 </html>

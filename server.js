@@ -4,6 +4,10 @@ const bodyParser = require('body-parser')
 const fs = require('fs')
 const app = express()
 
+
+const priceList = fs.readFileSync('priceList.json')
+const priceData = JSON.parse(priceList)
+console.log(priceData)
 const server = app.listen(3000,()=>{
     console.log('I am listening.. do you?')
 })
@@ -47,3 +51,40 @@ async function getPenncolors(request, response){
     const pennColor = JSON.parse(pennColorData)
     response.send(pennColor)
 }
+//it is adding and writing to the file.
+app.get('/add/:item/:price',addWord)
+
+function addWord(request, response){
+    const data = request.params;
+    const item = data.item;
+    const price = parseFloat(data.price);
+    var reply = '';
+    
+    if(item == '' || price == ''){
+        reply = 'The item price or name is not provided'
+    }else{
+        priceData[item] = price;
+        console.log(priceData)
+        var priceToFile = JSON.stringify(priceData, null, 2)
+        fs.writeFile('priceList.json', priceToFile, finishedWrite)
+
+        function finishedWrite(){
+            console.log('Done Writing')
+            reply = {
+                item: item,
+                price: price,
+                status: 'success'
+            }
+            response.send(reply)
+        }
+    }
+
+}
+
+app.get('/allPrice',getallPrice)
+
+function getallPrice(request, response){
+    const priceData = fs.readFileSync('priceList.json')
+    const prices = JSON.parse(priceData)
+    response.send(prices)
+}   

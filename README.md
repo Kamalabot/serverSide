@@ -1,0 +1,1 @@
+ServerSide is a pet project to learn the intricacies of the Node Programming, and related topics like JS Closures, Web Scraping and some Machine learning topics. The lessons and the ideas are taken from codingtrain youtube videos and morphed into additional challenges.
