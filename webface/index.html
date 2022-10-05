@@ -29,9 +29,8 @@
             <div class="w-100 pl3-ns">
               <h3>Webpages are in the Interwebs</h3>
               <p class="f6 f5-l lh-copy">
-                This page has been served from a <strong>remote server</strong>. The <strong>user i.e you</strong> care the least or even 
-                understand what is server side programming or client side programming. What you know, feel and 
-                want to experience is a smooth operation of the web page. This is page has a purpose, and that is to act as a memory hook,
+                This page has been served from a <strong>remote server</strong>. The <strong>user i.e you</strong> care, feel and 
+                want to experience is a smooth operation of the web page. This is page has a purpose. It is to act as a memory hook,
                 a reminder about conceptual difference between server-side and user-side javascript. 
               </p>
               <h3>What is one Major Difference</h3>
@@ -39,13 +38,70 @@
                 build on a file like index.html is <strong>not required.</strong>. The entire page is built on the server and 
                 it is transported to the web browser of the user. 
               </p>
+              <button id="geoLocate">GeoLocate me!</button>
+              
+              <h3>Your location shown</h3>
+              <p class="f6 f5-l lh-copy" id="youLoc"></p>
+              <script>
+                var geo = document.getElementById('geoLocate')
+                var x = document.getElementById('youLoc')
+                function getLocation() {
+                  console.log('enter')
+                  if (navigator.geolocation) {
+                    navigator.geolocation.watchPosition(showPosition);
+                  } else {
+                    x.innerHTML = "Geolocation is not supported by this browser.";
+                  }
+                }
+                
+                function showPosition(position) {
+                  console.log(position)
+                  x.innerHTML = "Latitude: " + position.coords.latitude +
+                  "<br>Longitude: " + position.coords.longitude;
+                }
+                
+                geo.addEventListener('click',getLocation)
+              </script>
               <h3>How about this page?</h3>
-              <p class="f6 f5-l lh-copy">It is a static page sent to the browser you are seeing it, as <strong>whole page</strong></p>
+              <p class="f6 f5-l lh-copy">It is a static page with inbuilt script sent to the browser. Browser is seeing it, as <strong>whole page</strong>. The <strong>Geolocate</strong> button above shows the location after getting your permission.</p>
               <h3>What difference does it make?</h3>
               <p class="f6 f5-l lh-copy">To the regular consumer of websites, it opens up aesthetically pleasing pages, with functions 
                 that is supported from the server. Especially the security is enhanced, as the user credentials are stored in the 
-                server, and the security of the server much higher than that of the user.
+                server. Multiple front-end frameworks are created for the developers to build websites fast. For example, provide any of the 
+                english "Parts of Speech" in the below text box. This <strong>queries the server</strong> that the page is hosted and provides the data. 
               </p>
+              <input type="pos" id="pos"/>
+              <button id="getCol">Part of Speech</button>
+              <p class="f6 f5-l lh-copy" id="color"><span>The color associated is: </span></p>
+              <script>
+                var enter = document.getElementById('getCol');
+                var output = document.getElementById('color');
+
+                enter.addEventListener('click', getColorData)
+
+                function getColorData(){
+                  var text = document.getElementById('pos').value;
+                  let capText = text.charAt(0).toUpperCase() + text.slice(1)
+                  if(text == ''){
+                    output.innerHTML = '';
+                    output.innerHTML += "<span class='bg-red'>Provide a Parts of speech like Noun or Verb...</span>"
+                  } else {
+                    const root = "/all"; 
+                    console.log(root)
+                    output.textContent = ''
+                    fetch(root)
+                      .then(data=>data.json())
+                      .then(color=>{
+                        //console.log(color)
+                        for(let col of color){
+                          if(col.description == capText){
+                          output.innerHTML += `<span class='bg-${col.color}'>The ${col.description} has tag ${col.tag}</span><br>`;
+                        }
+                      }
+                    })
+                  }
+                }
+              </script>
               <h3>Hey, I am unable to scrape this Page!!!</h3>
               <p class="f6 f5-l lh-copy">Scraping is the activity of selectively pulling the information of the 
                 webpage, and storing it for later use. <strong>Scraper is not a browser</strong>. Page only comes in if a browser 
