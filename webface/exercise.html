@@ -5,6 +5,7 @@
     <title>Serving from Server</title>
     <link rel="stylesheet" href="tachyons.min.css">
     <script src="./p5.js"></script>
+    <script src="./socket.io.js"></script>
 </head>
 
 <body class="helvetica pa1 bg-lightest-green">
@@ -35,10 +36,39 @@
         <button id="getPrice">Get Price</button>
         <p id="outPrice" class="f4 lh-copy"></p>
     </div>
+  </div>
+  <div>
+    <p class="f4 lh-copy">Below is a canvas that is broadcasting its mouse dragging to multiple instance of 
+      the same page. Try opening the same page in another browser window, or on your phone. You will see the 
+      effect there.
+    </p>
+  </div>
     <script>
        //you have to use the client side libraries where fetch wont work...
        var itemIn, itemRet, setPriceB, priceIn, getPriceB,pricePrint,outComment;
+       var socket = io();
+       socket.on('mouse',newDrawing)
+       
+      function mousePressed(){
+        background(150,25,255)
+      }
+
+      function mouseDragged(){
+        fill(255,255,0)
+        circle(mouseX, mouseY, 25);
+        var data = {x:mouseX,y:mouseY};
+        socket.emit('mouse',data)
+      }
+
+      function newDrawing(data){
+        noStroke()
+        fill(255,0,255)
+        rect(data.x, data.y,25,35)
+      }
+       
        function setup(){
+          createCanvas(400,400)
+          background(150,25,255)
            loadJSON('/allPrice',gotData)
            outComment = select('#outCom')
 
@@ -46,13 +76,16 @@
            
            getPriceB = select('#getPrice')
            pricePrint = select('#outPrice')
-
+ 
            setPriceB.mouseClicked(setPriceData)
            getPriceB.mouseClicked(getPriceData)
     } 
-       function gotData(data){
+    function draw(){
+      }
+
+      function gotData(data){
         console.log(data)
-       }
+      }
        function setPriceData(){
         itemIn = select('#item').value()
         priceIn = select('#price').value()

@@ -88,3 +88,21 @@ function getallPrice(request, response){
     const prices = JSON.parse(priceData)
     response.send(prices)
 }   
+
+const { Server } = require("socket.io");
+const io = new Server(server);
+
+io.on('connection', (socket) => {
+    console.log(`User with id: ${socket.id} has connected`);
+    socket.on('mouse',mouseMsg);
+
+    function mouseMsg(data){
+        socket.broadcast.emit('mouse',data);
+        console.log(data)
+    }
+
+
+    socket.on('disconnect',()=>{
+        console.log(`User with id: ${socket.id} disconnected`)
+    })
+  });
