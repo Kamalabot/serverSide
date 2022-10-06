@@ -37,18 +37,25 @@
         <p id="outPrice" class="f4 lh-copy"></p>
     </div>
   </div>
-  <div>
-    <p class="f4 lh-copy">Below is a canvas that is broadcasting its mouse dragging to multiple instance of 
+  <div class="w-100 fl pa2">
+    <p class="f4 lh-copy w-50">Below is a canvas that is broadcasting its mouse dragging to multiple instance of 
       the same page. Try opening the same page in another browser window, or on your phone. You will see the 
       effect there.
     </p>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="data" />
+    </form>
+    <p class="w-25" id='filetype'></p>
   </div>
     <script>
        //you have to use the client side libraries where fetch wont work...
        var itemIn, itemRet, setPriceB, priceIn, getPriceB,pricePrint,outComment;
        var socket = io();
-       socket.on('mouse',newDrawing)
-       
+       var chosenFileTxt;
+       socket.on('mouse',newDrawing);
+
+       var fileType;
+
       function mousePressed(){
         background(150,25,255)
       }
@@ -71,7 +78,7 @@
           background(150,25,255)
            loadJSON('/allPrice',gotData)
            outComment = select('#outCom')
-
+           fileType = select('#filetype')
            setPriceB = select('#setPrice')
            
            getPriceB = select('#getPrice')
@@ -79,6 +86,9 @@
  
            setPriceB.mouseClicked(setPriceData)
            getPriceB.mouseClicked(getPriceData)
+
+          //  var filein = createFileInput(gotFile);
+          //     filein.parent('filein')
     } 
     function draw(){
       }
@@ -86,6 +96,24 @@
       function gotData(data){
         console.log(data)
       }
+
+      // function gotFile(file){
+      //   chosenFileTxt = file.data;
+      //   console.log(chosenFileTxt)
+      //   let fType = file.type
+      //   fileType.html(file.type)
+
+      //   httpPost('sendFile/','json',chosenFileTxt,dataSent, sendError)
+
+      //   function dataSent(result){
+      //     console.log(result)
+      //   }
+
+      //   function sendError(error){
+      //     console.log(error)
+      //   }
+
+      // }
        function setPriceData(){
         itemIn = select('#item').value()
         priceIn = select('#price').value()

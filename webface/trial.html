@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Serving from Server</title>
+    <link rel="stylesheet" href="tachyons.min.css">
+    <script src="./p5.js"></script>
+</head>
+
+<body class="helvetica pa1 bg-lightest-green">
+  </div>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="data" />
+      <input type="submit" value="recv File" class="btn btn-default">
+    </form>
+  </div>
+  <div>
+      <button id="getFile">GetFiles</button>
+      <p id="textArea"></p>
+  </div>
+  <div>
+    <input type="text" id="fileLoc">
+    <button id="askData">ProcessFile</button>
+    <p id="fileData"></p>
+  </div>
+  <script src="processFile.js"></script>
+</body>
+</html>
