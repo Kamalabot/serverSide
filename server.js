@@ -32,13 +32,39 @@ app.get('/interface',(request,response)=>{
     response.send('<html><h1>This data has come directly from server as text</h1>. <p>Through this programming interface, server can write to the client display.</p><p>This server is rendered from a service called glitch where the node.js modules are supporting this website.</p><p>The website is built on a laptop, and pushed to github, which then updates the page here</p></html>')    
 })
 
-const {addWord, getName, getLocation} = require('./wordsInterface')
+const {getName, getLocation} = require('./wordsInterface')
 app.get('/location/:lat/:long',getLocation)
 
 app.get('/details',getName)
 
 //it is adding and writing to the file.
 app.get('/add/:item/:price',addWord)
+
+function addWord(request, response){
+    const data = request.params;
+    const item = data.item;
+    const price = parseFloat(data.price);
+    var reply = '';
+    
+    if(item == '' || price == ''){
+        reply = 'The item price or name is not provided'
+    }else{
+        priceData[item] = price;
+        console.log(priceData)
+        var priceToFile = JSON.stringify(priceData, null, 2)
+        fs.writeFile('priceList.json', priceToFile, finishedWrite)
+
+        function finishedWrite(){
+            console.log('Done Writing')
+            reply = {
+                item: item,
+                price: price,
+                status: 'success'
+            }
+            response.send(reply)
+        }
+    }
+}
 
 app.get('/all', getPenncolors)
 

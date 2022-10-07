@@ -39,8 +39,12 @@ function listFile(req,res){
 
 function filePath(req,res){
     var data = req.params;
-    console.log(data)
-    const textD= fs.readFile(`./uploads/${data.filePath}`,(err,data)=>{
+    const upDb= fs.readFileSync('uploadDatabase.json')
+    const upDbString = JSON.parse(upDb)
+    console.log(upDbString)
+    const serverFile = upDbString[data.filePath]
+    console.log(serverFile)
+    const textD= fs.readFile(serverFile,(err,data)=>{
         // const text = data.toString()
         var data = {
             text : data.toString()

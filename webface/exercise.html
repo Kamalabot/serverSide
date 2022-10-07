@@ -2,26 +2,24 @@
 <html lang="en">
 
 <head>
-    <title>Serving from Server</title>
+    <title>Uploading to Server</title>
     <link rel="stylesheet" href="tachyons.min.css">
     <script src="./p5.js"></script>
     <script src="./socket.io.js"></script>
 </head>
 
 <body class="helvetica pa1 bg-lightest-green">
-  <div class="flex items-center justify-center pa4">
-    <a href="https://kamalabot.github.io/P5Learning/Text/textIndex.html" class="f4 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box mr4">
-      <span class="pl1">Texting With JS</span>
+  <div class="flex pa4">
+    <a href="/" class="f4 no-underline black inline-flex w-80">
+      <span class="pl1">Server Side Programming</span>
     </a>  
-    <a href="https://kamalabot.github.io/P5Learning/p5/p5Index.html" class="f4 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box mr4">
-      <span class="pl1">Playfully P5</span>
-    </a>
-    <a href="https://kamalabot.github.io/P5Learning/ML/mlIndex.html" class="f4 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box mr4">
-      <span class="pl1">Learning Machine</span>
-    </a>
+    <a href="https://kamalabot.github.io/P5Learning/" class="f4 no-underline black inline-flex">
+      <span class="pl1">Client Side Programming</span>
+    </a>  
   </div>
-  <div class="fl w-100 f4 tl">
-    <div class="w-50 fl pa2">
+  <div class="fl w-100 f4 tl ba b--dashed">
+    <h1 class="tc">Submitting user data to Database</h1>
+    <div class="w-60 fl pa2">
       <h2>Price Entry</h2>
       <p class="f4 lh-copy">Enter the item and price below.</p>
       <span>Item Name: </span><input type="item" id="item"/>
@@ -29,7 +27,7 @@
       <button id="setPrice" class="pa2 ma2">Price Submit</button>
       <p id="outCom" class="f4 lh-copy"></p>
     </div>
-    <div class="w-50 fl pa2">
+    <div class="w-40 fl pa2">
         <h2>Retrive Price</h2>
         <p class="f4 lh-copy">Enter the item to Find.</p>
         <span>Item Name: </span><input type="item" id="itemRet"/>
@@ -38,121 +36,39 @@
     </div>
   </div>
   <div class="w-100 fl pa2">
-    <div class="w-50 pa4">
+    <h1 class="tc">Uploading files to Server</h1>
+    <div class="w-50 pa2 shadow-2">
+      <h4>Upload a File</h4>
       <form action="/upload" method="post" enctype="multipart/form-data">
         <input type="file" name="data" />
         <input type="submit" value="Upload" class="btn btn-default">
       </form>
     </div>
-    <div class="w-40 fl">
+    <p></p>
+    <div class="w-40 fl pa2 shadow-2 mr5">
+      <h4>Find file in Server</h4>
       <button id="getFile">List Files</button>
       <p id="textArea"></p>
     </div>
-    <div class="w-50 fl">
+    <div class="w-50 fl pa2 shadow-2">
+      <h4>Look at Contents of File</h4>
       <input type="text" id="fileLoc">
       <button id="askData">Show Contents</button>
       <p id="fileData"></p>
     </div>
-    <div class="w-50 fl">
+    
+    <div class="w-50 pa4 fl">
       <p id='filetype'></p>
     </div>
   </div>
-  <p class="f4 lh-copy w-50">Below is a canvas that is broadcasting its mouse dragging to multiple instance of 
-    the same page. Try opening the same page in another browser window, or on your phone. You will see the 
-    effect there.
-  </p>
-  <script>
-      //you have to use the client side libraries where fetch wont work...
-      var itemIn, itemRet, setPriceB, priceIn, getPriceB,pricePrint,outComment;
-      var socket = io();
-      var chosenFileTxt;
-      socket.on('mouse',newDrawing);
-
-      var fileType;
-
-    function mousePressed(){
-      background(150,25,255)
-    }
-
-    function mouseDragged(){
-      fill(255,255,0)
-      circle(mouseX, mouseY, 25);
-      var data = {x:mouseX,y:mouseY};
-      socket.emit('mouse',data)
-    }
-
-    function newDrawing(data){
-      noStroke()
-      fill(255,0,255)
-      rect(data.x, data.y,25,35)
-    }
-      
-      function setup(){
-        createCanvas(400,400)
-        background(150,25,255)
-          loadJSON('/allPrice',gotData)
-          outComment = select('#outCom')
-          fileType = select('#filetype')
-          setPriceB = select('#setPrice')
-          
-          getPriceB = select('#getPrice')
-          pricePrint = select('#outPrice')
-
-          setPriceB.mouseClicked(setPriceData)
-          getPriceB.mouseClicked(getPriceData)
-
-        //  var filein = createFileInput(gotFile);
-        //     filein.parent('filein')
-  } 
-  function draw(){
-    }
-
-    function gotData(data){
-      console.log(data)
-    }
-
-    // function gotFile(file){
-    //   chosenFileTxt = file.data;
-    //   console.log(chosenFileTxt)
-    //   let fType = file.type
-    //   fileType.html(file.type)
-
-    //   httpPost('sendFile/','json',chosenFileTxt,dataSent, sendError)
-
-    //   function dataSent(result){
-    //     console.log(result)
-    //   }
-
-    //   function sendError(error){
-    //     console.log(error)
-    //   }
-
-    // }
-      function setPriceData(){
-      itemIn = select('#item').value()
-      priceIn = select('#price').value()
-      print('enter set')   
-      if(itemIn !='' && priceIn !=''){
-          loadJSON(`/add/${itemIn}/${priceIn}`)
-          outComment.html('price is registered...')
-      }else{
-          outComment.html('Please enter both item and price')
-      } 
-  }
-
-      function getPriceData(){
-      print('enter get')
-      itemRet = select('#itemRet').value()   
-      if(itemRet){
-          loadJSON('/allPrice', (data)=>{
-          var price = data[itemRet]
-          pricePrint.html(`The price of ${itemRet} is ${price}`)
-          })
-      }else{
-          pricePrint.html(`Enter a Valid Item, or price unavailable`)
-      }
-  }
-  </script>
+  <div class="w-100 fl pa2 shadow-2 flex-column">
+    <h4>Socket Programming</h4>
+    <p class="f5 lh-copy">Below is a canvas that is broadcasting its mouse dragging to multiple instance of 
+      the same page. Try opening the same page in another browser window, or on your phone. You will see the 
+      effect there.
+    </p>
+    <p id="canvas"></p>
+  </div>
   <script src="processFile.js"></script>
 </body>
 </html>
