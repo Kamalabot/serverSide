@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Serving from Server</title>
+    <link rel="stylesheet" href="tachyons.min.css">
+    <script src="./p5.js"></script>
+</head>
+
+<body class="helvetica pa1 bg-lightest-green">
+  <div class="flex pa4">
+    <a href="/" class="f4 no-underline black inline-flex w-80">
+      <span class="pl1">Server Side Programming</span>
+    </a>  
+    <a href="https://kamalabot.github.io/P5Learning/" class="f4 no-underline black inline-flex">
+      <span class="pl1">Client Side Programming</span>
+    </a>  
+  </div>
+  <h1 class="tc">Scraping and Text Extraction</h1>
+  <div class="fl w-100 f4 tl flex flex-wrap">
+    <div class="w-25 fl pa2 shadow-2">
+      <h2>Scraping Tool</h2>
+      <span>Enter link: </span><input type="item" id="linkScrape"/>
+      <button id="scrape" class="pa2 ma2">Scrape</button>
+      <button id="showLink" class="pa2 ma2">Show Links</button>
+      <p class="lh-copy f4">Links scraped</p>
+      <p id="outList" class="f4 lh-copy"></p>
+    </div>
+    <div class="w-50 fl pa2">
+        <h2>Click and See the Extractions</h2>
+        <button id="extract">Extract</button>
+        <p id="dataOut" class="f4 lh-copy"></p>
+    </div>
+    <div class="w-100 fl pa2 flex-wrap flex" id="elemOut"></div>
+    <div class="w-100 fl pa2 flex flex-wrap">
+        <h2>Extracted Text</h2>
+        <p id="textOut" class="f4 lh-copy"></p>
+    </div>
+  </div>
+  <script src="scrapExtract.js"></script>
+</body>
+</html>

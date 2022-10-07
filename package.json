@@ -26,6 +26,7 @@
   "homepage": "https://github.com/Kamalabot/P5Learning#readme",
   "dependencies": {
     "body-parser": "^1.20.0",
+    "cheerio": "^1.0.0-rc.12",
     "compromise": "^14.5.0",
     "compromise-adjectives": "0.0.7",
     "compromise-dates": "^3.4.1",
@@ -50,6 +51,7 @@
     "nedb": "^1.8.0",
     "p5": "^1.4.2",
     "pdfreader": "^2.0.0",
+    "request": "^2.88.2",
     "rita": "^2.8.21",
     "socket.io": "^4.5.2",
     "tachyons": "^4.12.0",

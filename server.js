@@ -115,3 +115,23 @@ io.on('connection', (socket) => {
 //save it to backend server : done
 //process something 
 //send it back when called, are programmed.
+
+// This is a module for HTTP Requests
+
+const {loadScraper, loadURL} = require('./scraperHelp')
+// A router to load a URL
+app.get('/load', loadURL);
+
+app.get('/cheers', loadScraper);
+
+// A route to show the URLs in the file
+app.get('/showurl', showURL);
+
+// Callback
+function showURL(req, res){
+    console.log('reaching showURL')
+    const linkData = fs.readFileSync('linkScraped.json')
+    const links = JSON.parse(linkData)
+    console.log('sending ShowURL')
+    res.send(links)
+}
