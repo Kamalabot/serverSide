@@ -1,0 +1,55 @@
+{
+  "name": "p5_textprgming",
+  "version": "1.0.0",
+  "description": "Platform to Practice P5 and Text Programming",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kamalabot/P5Learning.git"
+  },
+  "keywords": [
+    "text",
+    "visualisation",
+    "programming",
+    "p5js",
+    "ml5"
+  ],
+  "author": "solverBot",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kamalabot/P5Learning/issues"
+  },
+  "homepage": "https://github.com/Kamalabot/P5Learning#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "compromise": "^14.5.0",
+    "compromise-adjectives": "0.0.7",
+    "compromise-dates": "^3.4.1",
+    "compromise-export": "0.0.3",
+    "compromise-hash": "0.0.3",
+    "compromise-html": "0.0.4",
+    "compromise-keypress": "0.0.2",
+    "compromise-ngrams": "0.0.6",
+    "compromise-paragraphs": "0.0.5",
+    "compromise-sentences": "^0.3.0",
+    "compromise-speech": "^0.1.0",
+    "compromise-syllables": "0.0.6",
+    "cors": "^2.8.5",
+    "culori": "^2.0.3",
+    "dumpster-dive": "^5.6.2",
+    "express": "^4.18.1",
+    "live-server": "^1.2.2",
+    "ml5": "^0.12.2",
+    "nedb": "^1.8.0",
+    "p5": "^1.4.2",
+    "rita": "^2.8.21",
+    "tachyons": "^4.12.0",
+    "wtf_wikipedia": "^10.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

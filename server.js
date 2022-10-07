@@ -32,31 +32,13 @@ app.get('/interface',(request,response)=>{
     response.send('<html><h1>This data has come directly from server as text</h1>. <p>Through this programming interface, server can write to the client display.</p><p>This server is rendered from a service called glitch where the node.js modules are supporting this website.</p><p>The website is built on a laptop, and pushed to github, which then updates the page here</p></html>')    
 })
 
+const {addWord, getName, getLocation} = require('./wordsInterface')
 app.get('/location/:lat/:long',getLocation)
-
-//when the url is triggered the
-function getLocation(request, response){
-    var data = request.params;
-    var reply = '';
-    if(data){
-        reply += `latitude :${data.lat}, longitude:${data.long}`;
-        reply += `You are ${Math.random()*10} mins from here.`
-    }
-    response.send(reply)
-}
 
 app.get('/details',getName)
 
-//when the url is triggered with the format http://127.0.0.1:3000/details?named=chec
-function getName(request, response){
-    var url = request.query; //select the 
-    if(url.name){
-        var reply = `Your detail is ${JSON.stringify(url)}`
-    } else {
-        var reply = `Your detail is missing.`
-    }
-    response.send(reply)
-}
+//it is adding and writing to the file.
+app.get('/add/:item/:price',addWord)
 
 app.get('/all', getPenncolors)
 
@@ -66,35 +48,6 @@ async function getPenncolors(request, response){
     response.send(pennColor)
 }
 
-//it is adding and writing to the file.
-app.get('/add/:item/:price',addWord)
-
-function addWord(request, response){
-    const data = request.params;
-    const item = data.item;
-    const price = parseFloat(data.price);
-    var reply = '';
-    
-    if(item == '' || price == ''){
-        reply = 'The item price or name is not provided'
-    }else{
-        priceData[item] = price;
-        console.log(priceData)
-        var priceToFile = JSON.stringify(priceData, null, 2)
-        fs.writeFile('priceList.json', priceToFile, finishedWrite)
-
-        function finishedWrite(){
-            console.log('Done Writing')
-            reply = {
-                item: item,
-                price: price,
-                status: 'success'
-            }
-            response.send(reply)
-        }
-    }
-
-}
 
 app.get('/allPrice',getallPrice)
 
@@ -104,14 +57,13 @@ function getallPrice(request, response){
     response.send(prices)
 }   
 
-app.post('/upload',upload.single('data'),function (req, res, next){
-    console.log(req.body)
-    console.log(req.file)
-    var reply = {
-        msg:'Got the data'
-    }
-    res.send(reply)
-})
+const {uploadFile, listFile, filePath} = require('./uploadFile')
+
+app.post('/upload',upload.single('data'),uploadFile)
+
+app.get('/listfile',listFile)
+
+app.get('/uploads/:filePath',filePath)
 
 const { Server } = require("socket.io");
 const io = new Server(server);
@@ -132,8 +84,8 @@ io.on('connection', (socket) => {
   });
 
 //challenge is 
-//Get the file from frontend 
-//send it to backend
-//save it to backend server
+//Get the file from frontend : done 
+//send it to backend : done
+//save it to backend server : done
 //process something 
 //send it back when called, are programmed.

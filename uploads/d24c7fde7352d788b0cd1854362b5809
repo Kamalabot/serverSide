@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Text</title>
+    <link rel="stylesheet" href="../libraries/tachyons/tachyons.min.css">
+</head>
+
+<body class="helvetica pa1 bg-lightest-green">
+  <div class="flex items-center justify-center pa4">
+    <a href="../index.html" class="f4 no-underline blue bg-animate hover-bg-green hover-white inline-flex items-center pa3 ba border-box mr4">
+      <span class="pl1">Back Home</span>
+    </a>  
+    <a href="../p5/p5Index.html" class="f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box mr4">
+      <span class="pl1">Playfully P5</span>
+    </a>
+    <a href="../ML/mlIndex.html" class="f5 no-underline black bg-animate hover-bg-black hover-white inline-flex items-center pa3 ba border-box mr4">
+      <span class="pl1">Learning Machine</span>
+    </a>
+  </div>
+  <div class="fl w-100 f1 tc f-healines-ns dim black link">
+        <a href="https://www.javascript.com/" class="no-underline"><h1>Texting with JS</h1></a>
+        <aside class="f4 tr">Let no character be left unsearched</aside>
+    </div>
+    <section class="mw7 center">
+      <h2 class="baskerville fw1 ph3 ph0-l">Speaking Texts</h2>
+      <article class="bt bb b--black-10">
+        <a class="db pv4 ph3 ph0-l no-underline black dim" href="ch1/textInputs.html">
+          <div class="flex flex-column flex-row-ns">
+            <div class="w-100 pl3-ns">
+              <h1 class="f3 fw1 baskerville mt0 lh-title">B4 Universe... There were User Inputs</h1>
+              <p class="f6 f5-l lh-copy">
+                Computers can talk only symbols, not even our native numbers and alphabet characters. How to speak 
+                with the Computers then? In the language of demiGod Processor. Processor speaks only assembly, so 
+                were born, myriad languages that are used for praying to the Processor.
+              </p>
+            </div>
+          </div>
+        </a>
+      </article>
+      <article class="bt bb b--black-10">
+        <a class="db pv4 ph3 ph0-l no-underline black dim" href="ch2/textManipulation.html">
+          <div class="flex flex-column flex-row-ns">
+            <div class="w-100 pl3-ns">
+              <h1 class="f3 fw1 baskerville mt0 lh-title">Let there be Strings</h1>
+              <p class="f6 f5-l lh-copy">
+                They are called strings for a reason. Ask me why?
+                Strings are strings of characters, thats why. That is logical name. Computers have another import quirk. 
+                First character in the String is referred using "Index 0". We learn counting by using our fingers. When all the fingers are closed, 
+                it is 0, but computers don't have fingers... Enough lets get into Manipulating Strings.
+              </p>
+            </div>
+          </div>
+        </a>
+      </article>
+      <article class="bt bb b--black-10">
+        <a class="db pv4 ph3 ph0-l no-underline black dim" href="ch3/regExActions.html">
+          <div class="flex flex-column flex-row-ns">
+            <div class="w-100 pl3-ns">
+              <h1 class="f3 fw1 baskerville mt0 lh-title">RegEx : Getting at the Strings</h1>
+              <p class="f6 f5-l lh-copy">
+                Ever thought of taking a mail content and extracting the key information from the body? What it will take to do that?
+                This page will build towards such an application, where the power of Regex and later the other libraries like Compromise cool 
+                using NLP to extract the information. Now, we have the <strong>Trusty Scalpel</strong> our regular expressions.
+              </p>
+            </div>
+          </div>
+        </a>
+      </article>
+      <article class="bt bb b--black-10">
+        <a class="db pv4 ph3 ph0-l no-underline black dim" href="ch4/textGenerations.html">
+          <div class="flex flex-column flex-row-ns">
+            <div class="w-100 pl3-ns">
+              <h1 class="f3 fw1 baskerville mt0 lh-title">Text Generation :L1</h1>
+              <p class="f6 f5-l lh-copy">
+                Natural language programs open up potential to analyse huge body of texts, and then extract insights which our 
+                <strong>meaning seeking</strong> brain fails when reading the words. The words in themselves are symbols, which the 
+                liguists, writers and poets have mastered. We mere programmers, have mastered numbers and that just 9 of them. How 
+                are we going to take on Texts?
+              </p>
+            </div>
+          </div>
+        </a>
+      </article>
+    </section>
+</body>
+</html>
