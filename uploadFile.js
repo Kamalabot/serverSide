@@ -56,3 +56,5 @@ function filePath(req,res){
 exports.uploadFile = uploadFile
 exports.listFile = listFile
 exports.filePath = filePath
+
+console.log(module)

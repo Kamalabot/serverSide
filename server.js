@@ -11,6 +11,7 @@ const app = express()
 const priceList = fs.readFileSync('priceList.json')
 const priceData = JSON.parse(priceList)
 console.log(priceData)
+
 const server = app.listen(3000,()=>{
     console.log('I am listening.. do you?')
 })
@@ -18,10 +19,10 @@ const server = app.listen(3000,()=>{
 app.use(express.static('webface'))//webface is the folder that has the static pages
 
 // parse various different custom JSON types as JSON
-app.use(bodyParser.json({ type: 'application/*+json' }))
+app.use(express.json())
 
 // parse some custom thing into a Buffer
-app.use(bodyParser.raw({ type: 'application/vnd.custom-type' }))
+app.use(express.urlencoded({extended:false}))
 
 // parse an HTML body into a string
 app.use(bodyParser.text({ type: 'text/html' }))
