@@ -81,30 +81,20 @@ function processHtml(textData){
 }
 
 // // URL of the page we want to scrape
-// const url = "https://www.linkedin.com/jobs/view/3305570611/?refId=O0ecBkHOgeEWn6f%2FOZKDLg%3D%3D&trackingId=ScsPuL4Dyak9I9ccR0cMkA%3D%3D&trk=d_flagship3_company,https://www.linkedin.com/jobs/view/3305571285/?refId=O0ecBkHOgeEWn6f%2FOZKDLg%3D%3D&trackingId=9DCj0WWYDQfRBNkuA8pM9A%3D%3D&trk=d_flagship3_company,https://www.linkedin.com/jobs/view/3292150169/?refId=%7B%EF%BF%BDR%EF%BF%BD%23%5D%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%0F_g%EF%BF%BD&trk=d_flagship3_profile_view_base";
+const url = "https://www.linkedin.com/jobs/view/3305570611/?refId=O0ecBkHOgeEWn6f%2FOZKDLg%3D%3D&trackingId=ScsPuL4Dyak9I9ccR0cMkA%3D%3D&trk=d_flagship3_company,https://www.linkedin.com/jobs/view/3305571285/?refId=O0ecBkHOgeEWn6f%2FOZKDLg%3D%3D&trackingId=9DCj0WWYDQfRBNkuA8pM9A%3D%3D&trk=d_flagship3_company,https://www.linkedin.com/jobs/view/3292150169/?refId=%7B%EF%BF%BDR%EF%BF%BD%23%5D%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%EF%BF%BD%0F_g%EF%BF%BD&trk=d_flagship3_profile_view_base";
 
 // //The links can be either single or seperated by coma
 
-// const processUrl = url.split(',')
+const processUrl = url.split(',')
 
-// if(processUrl.length > 1){
-//     console.log('multi File')
-//     for(let url in processUrl){
-//         let urlSplit = url.split('.')
-//         let fileTime = Date.now()
-//         let linkFile = `linksIn${urlSplit[1]}.txt`
-//         let textFile = `textIn${urlSplit[1]}.txt`
-//         // linkExtractor(url,linkFile)
-//         textExtractor(url,textFile)
-//     }
-// } else {
-//     console.log('single File')
-//     let urlSplit = url.split('.')
-//     let fileTime = Date.now()
-//     let linkFile = `linksIn${urlSplit[1]}.txt`
-//     let textFile = `textIn${urlSplit[1]}.txt`
-//     linkExtractor(url,linkFile)
-//     textExtractor(url,textFile)
-// }
+for(let url of processUrl){
+    console.log(url)
+    let urlSplit = url.split('.')
+    let fileTime = Date.now()
+    let linkFile = `linksIn${urlSplit[1]}_${fileTime}.txt`
+    let textFile = `textIn${urlSplit[1]}_${fileTime}.txt`
+    linkExtractor(url,linkFile)
+    textExtractor(url,textFile)
+}
 
 module.exports = {textExtractor, linkExtractor}
