@@ -3,7 +3,7 @@ const cheerio = require("cheerio");
 const fs = require("fs");
 
 // URL of the page we want to scrape
-const url = "https://p5js.org/";
+const url = "https://en.wikipedia.org/wiki/Main_Page";
 
 // Async function which scrapes the data
 async function approach1() {
@@ -44,4 +44,30 @@ async function approach2() {
        console.log(parsedItems);
    }
 
-approach2() 
+// approach2() 
+
+async function approach3() {
+    // Fetch HTML of the page we want to scrape
+       const { data } = await axios.get(url);
+       // Load HTML we fetched in the previous line
+       const $ = cheerio.load(data);
+       console.log(data)
+        // let items = $('a');
+        let items = $('*');
+        let attr_class = []
+        let attr_id = []
+        for (let ite of items){
+            let tem = $(ite).attr()
+            if(tem.class != undefined){
+                attr_class.push(tem.class)
+            }
+            if(tem.id != undefined){
+                attr_id.push(tem.id)
+            }
+        }
+
+ 
+       console.log(attr_class,attr_id);
+   }
+
+approach3() 
